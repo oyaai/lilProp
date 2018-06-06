@@ -107,14 +107,22 @@
 				
 	</form>
 <script>
-var modal = document.getElementById('panel1');
+$(document).on('click', 'form button[type=submit]', function(e) {
+	
+	var isValid = $(e.target);
+    if(isValid) {
+      e.preventDefault(); //prevent the default action
+	  var modal = document.getElementById('panel1');
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+	  window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "block";
+			}
+		}
+	  alert();
     }
-}
 
+});
 </script>
 </body>
 </html>
