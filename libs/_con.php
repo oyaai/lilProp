@@ -13,5 +13,17 @@ $result = $conn->prepare($sql);
 
 $status = $result->execute();
 
+if($status){
+
+	$command = "SELECT * FROM `egn_pacific` ORDER BY id DESC LIMIT 1;";
+	$cResult = $conn->prepare($command);
+	$info = $cResult->execute();
+	$row = $info->fetchAll();
+	return json_encode($row);
+
+	header( "Location: $url" );
+}
+
+
 $conn = null;
 ?>
