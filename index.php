@@ -109,7 +109,28 @@
 <script>
 $(document).on('click', 'form button[type=submit]', function(e) {
 	
-	var isValid = $(e.target);
+	var first_name = $('#txtName').val();
+    var email = $('#txtEmail').val();
+    var phone = $('#txtPhone').val();
+    var company = $('#txtCompany').val();
+	
+	 $(".error").remove();
+
+	if (first_name.length < 1) {
+      $('#txtName').after('<span style=color:red>This field is required</span>');
+    }
+	if (email.length < 1) {
+      $('#txtEmail').after('<span style=color:red>This field is required</span>');
+    }
+	if (phone.length < 1) {
+      $('#txtPhone').after('<span style=color:red>This field is required</span>');
+    }
+	if (company.length < 1) {
+      $('#txtCompany').after('<span style=color:red>This field is required</span>');
+    }
+
+	var isValid = $(e.target).parents('form');
+
     if(isValid) {
       e.preventDefault(); //prevent the default action
 	  document.getElementById('panel1').style.display='block';
@@ -117,6 +138,7 @@ $(document).on('click', 'form button[type=submit]', function(e) {
     }
 
 });
+
 </script>
 </body>
 </html>
