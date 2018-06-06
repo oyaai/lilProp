@@ -31,7 +31,7 @@
 
 </head>
 <body >
-	<form name="frmMain" id="frmMain" method="POST" action="<?=$_SERVER['PHP_SELF']; ?>">
+	<form name="frmMain" id="frmMain" method="POST" action="libs/_con.php">
 		<div class="container">
 			<div class="row">
 				<div >Name <span style="color:red">*</span> </div>
@@ -75,7 +75,6 @@
 				<table>
 					<tr>
 						<td><h4>Result</h4></td>
-						
 					</tr>
 					<?php 
 						//print_r($_POST);
@@ -107,36 +106,27 @@
 				
 	</form>
 <script>
-$(document).on('click', 'form button[type=submit]', function(e) {
-	
-	var first_name = $('#txtName').val();
-    var email = $('#txtEmail').val();
-    var phone = $('#txtPhone').val();
-    var company = $('#txtCompany').val();
-	
-	 $(".error").remove();
 
-	if (first_name.length < 1) {
-      $('#txtName').after('<span style=color:red>This field is required</span>');
-    }
-	if (email.length < 1) {
-      $('#txtEmail').after('<span style=color:red>This field is required</span>');
-    }
-	if (phone.length < 1) {
-      $('#txtPhone').after('<span style=color:red>This field is required</span>');
-    }
-	if (company.length < 1) {
-      $('#txtCompany').after('<span style=color:red>This field is required</span>');
-    }
-
-	var isValid = $(e.target).parents('form');
-
-    if(isValid) {
-      e.preventDefault(); //prevent the default action
-	  document.getElementById('panel1').style.display='block';
-
-    }
-
+$('form[id="frmMain"]').validate({
+  rules: {
+    txtName: 'required',
+    txtPhone: 'required',
+    txtEmail: {
+      required: true,
+      email: true,
+    },
+    txtCompany: 'required'
+  },
+  messages: {
+    txtName: 'This field is required',
+    txtPhone: 'This field is required',
+    txtEmail: 'Enter a valid email',
+    txtCompany: 'Enter a Company'
+  },
+  submitHandler: function(form) {
+   form.submit();
+  }
+  
 });
 
 </script>
