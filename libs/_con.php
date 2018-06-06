@@ -8,8 +8,8 @@ $url = 'http://pacificprime.egnserv.com/';
 
 $conn = new PDO($dsn, $dbuser, $dbpwd);
 $sql = "INSERT INTO egn_pacific VALUES('','".$_REQUEST['name']."','".$_REQUEST['phone']."','".$_REQUEST['email']."','".$_REQUEST['company']."','".$_REQUEST['file']."');";	
-echo $sql;
-break;
+/*echo $sql;
+break;*/
 
 $result = $conn->prepare($sql);
 
