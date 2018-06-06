@@ -14,22 +14,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-<script>
-$("button").click(function(){
-    $.post("./libs/_con.php",
-    {
-        name: document.getElementById('txtName').value,
-        phone: document.getElementById('txtPhone').value,
-		email: document.getElementById('txtEmail').value,
-		company: document.getElementById('txtCompany').value,
-		file: document.getElementById('txtFile').value
-    },
-    function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
-</script>
-
 <!-- Style-->
 <style>
 .modal {
@@ -47,42 +31,42 @@ $("button").click(function(){
 
 </head>
 <body >
-	<form name="frmMain" id="frmMain" method="POST" action="./libs/_con.php">
+	<form name="frmMain" id="frmMain" method="POST" action="<?=$_SERVER['PHP_SELF']; ?>">
 		<div class="container">
 			<div class="row">
 				<div >Name <span style="color:red">*</span> </div>
 			</div>
 			<div class="row">
-				<div><input type="text" size="30px" id="txtName" name="txtName"></div>
+				<div><input type="text" size="30px" id="txtName" name="txtName" required></div>
 			</div>
 			<div class="row">
 				<div>Phone <span style="color:red">*</span> </div>
 			</div>
 			<div class="row">
-				<div><input type="text" size="30px" id="txtPhone" name="txtPhone"></div>
+				<div><input type="text" size="30px" id="txtPhone" name="txtPhone" required ></div>
 			</div>
 			<div class="row">
 				<div>Email <span style="color:red">*</span> </div>
 			</div>
 			<div class="row">
-				<div><input type="text" size="30px" id="txtEmail" name="txtEmail"></div>
+				<div><input type="email" size="30px" id="txtEmail" name="txtEmail" required ></div>
 			</div>
 			<div class="row">
 				<div>Company <span style="color:red">*</span> </div>
 			</div>
 			<div class="row">
-				<div><input type="text" size="30px" id="txtCompany" name="txtCompany"></div>
+				<div><input type="text" size="30px" id="txtCompany" name="txtCompany" required></div>
 			</div>
 			<div class="row">
 				<div>Company logo upload <span style="color:red">*</span> </div>
 			</div>
 			<div class="row">
-				<div><input type="file" size="30px"  id="txtFile" name="txtFile" ></div>
+				<div><input type="file" size="30px"  id="txtFile" name="txtFile"  ></div>
 			</div>
 			<div class="row"></br></div>
 			<div class="row">
 				<div >
-					<button type="button" class="btn btn-warning " onclick="document.getElementById('panel1').style.display='block'" style="width:300px;" >Submit</button>
+					<button type="submit" name="submit" id="submit" class="btn btn-warning " style="width:300px;" >Submit</button>
 				</div>
 			</div>
 		</div>
@@ -94,7 +78,7 @@ $("button").click(function(){
 						
 					</tr>
 					<?php 
-						print_r($_POST);
+						//print_r($_POST);
 						foreach ($_POST as $key => $value) {
 							echo "<tr>";
 							echo "<td>" .$value. "</td>" ;
@@ -123,15 +107,14 @@ $("button").click(function(){
 				
 	</form>
 <script>
-// Get the modal
 var modal = document.getElementById('panel1');
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
+
 </script>
 </body>
 </html>
