@@ -1,3 +1,7 @@
+<?php
+require ("./libs/_conn.php");
+_conn();
+?>
 <html>
 <head>
 	<title>A Simple of Pacific Prime.</title>
@@ -116,6 +120,7 @@ function tinput($data) {
 $(document).on('submit','form',function(){
    // code
 	 document.getElementById('panel1').style.display = 'block';
+	 break;
 });
 
 </script>
