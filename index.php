@@ -44,14 +44,14 @@ $(document).ready(function(){
 <style>
 .error {color: #FF0000;}
 .modal {
-    display: block; 
-    position: fixed; 
-    z-index: 1; 
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 500;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
     padding-top: 60px;
 }
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
 </head>
 
 <body >
-<form id="frmMain" method="POST" action="/libs/_con.php">
+<form id="frmMain" method="POST" action="/libs/_con.php" enctype="multipart/form-data">
 		 <div class="container">
 			<div class="row">
 				<div >Name <span style="color:red">*</span> </div>
