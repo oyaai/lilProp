@@ -9,6 +9,7 @@ $conn = new PDO($dsn, $dbuser, $dbpwd);
 $vflag = -1; 
 $name = "";
 
+
 if(isset($_POST)){
 
 	if($_REQUEST['txtName']==""){
@@ -44,7 +45,7 @@ if(isset($_POST)){
 	
 
 	if($vflag == 0 || $vflag == -1 ){
-	$fileName = $_POST["txtFile"];
+	$fileName = $_FILES["txtFile"]["name"];
 	$dir_upload = "/imgs/uploads/";
 	$upload = $dir_upload . basename($_FILES["txtFile"]);
 
