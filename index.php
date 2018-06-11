@@ -44,14 +44,14 @@ $(document).ready(function(){
 <style>
 .error {color: #FF0000;}
 .modal {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: block; 
+    position: fixed; 
+    z-index: 1; 
     left: 500;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
     padding-top: 60px;
 }
 
