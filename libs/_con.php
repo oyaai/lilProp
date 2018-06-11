@@ -1,29 +1,74 @@
-<?
-// connect 06-06-2018
+<?php
+require ("_conn.php");
+//$conn = new _conn();
 $dsn = "mysql:dbname=umarin2_egn;host=localhost";
 $dbuser = "umarin2_oya";
 $dbpwd = "oya@1925";
 
-$url = 'http://pacificprime.egnserv.com/';
-
 $conn = new PDO($dsn, $dbuser, $dbpwd);
-$sql = "INSERT INTO egn_pacific VALUES('','".$_REQUEST['txtName']."','".$_REQUEST['txtPhone']."','".$_REQUEST['txtEmail']."','".$_REQUEST['txtCompany']."','".$_REQUEST['file']."');";	
+$vflag = -1; 
+$name = "";
 
-$result = $conn->prepare($sql);
+if(isset($_POST)){
 
-$status = $result->execute();
+	if($_REQUEST['txtName']==""){
+		$name .= " Name ";
+		$vflag = 1; 
+	}
+	if($_REQUEST['txtPhone'] == ""){
+		$name .= " Phone ";
+		$vflag = 1; 
+		
+	}
+	if($_REQUEST['txtEmail'] == ""){
+		$name .= " Email ";
+		$vflag = 1; 
+		
+	}
+	if($_REQUEST['txtCompany'] == ""){
+		$name .= " Company ";
+		$vflag = 1; 
+		
+	}
+	if($_REQUEST['txtFile'] == ""){
+		$name .= " File ";
+		$vflag = 1; 
+		
+	}
 
-if($status){
+	echo $vflag;
+	if($vflag == 1 ){
+		echo "<script type='text/javascript'>alert('Enter ".$name."');window.location.href='".uri."';</script>";
+		
+	}
+	
 
-	$command = "SELECT * FROM `egn_pacific` ORDER BY id DESC LIMIT 1;";
-	$cResult = $conn->prepare($command);
-	$info = $cResult->execute();
-	$row = $info->fetchAll();
-	return json_encode($row);
+	if($vflag == 0 || $vflag == -1 ){
+	$fileName = $_POST["txtFile"];
+	$dir_upload = "/imgs/uploads/";
+	$upload = $dir_upload . basename($_FILES["txtFile"]);
 
-	header( "Location: $url" );
+	$sql = "INSERT INTO egn_pacific VALUES('','".$_REQUEST['txtName']."','".$_REQUEST['txtPhone']."','".$_REQUEST['txtEmail']."','".$_REQUEST['txtCompany']."','".$fileName."');";	
+
+	$result = $conn->prepare($sql);
+
+	$status = $result->execute();
+
+
+		if($status){
+
+			header( "Location: ".url );
+		}else{
+			
+			header( "Location: ".uri );
+			
+		}
+		
+	}
+}else{
+	header( "Location: ".uri );
+	
 }
-
 
 $conn = null;
 ?>
