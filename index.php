@@ -10,36 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-<script>
-$(document).ready(function(){
-    $.ajax({
-        url: './libs/result.php',
-        type: 'get',
-        dataType: 'JSON',
-        success: function(response){
-            var len = response.length;
-            for(var i=0; i<len; i++){
-                var name = response[i].name;
-                var phone = response[i].phone;
-                var email = response[i].email;
-                var company = response[i].company;
-				var file = response[i].file;
-				
-                var tr_str = "<div>" +
-                    "<div>Result</div>" +
-                    "<div>" + username + "</div>" +
-                    "<div>" + name + "</div>" +
-                    "<div>" + email + "</div>" +
-					 "<div> <img src='/imgs/uploads/" + file + "></div>" +
-                    "</div";
 
-                $("#panel1").append(tr_str);
-            }
-
-        }
-    });
-});
-</script>
 
 <style>
 .error {color: #FF0000;}
@@ -103,6 +74,17 @@ $(document).ready(function(){
 	<div id="panel1" class="modal">
 		<span id="txtTest"></span>
 	</div>
-
+<script>
+$(document).ready(function(){
+	setInterval(function(){
+		if($p == "back"){
+			$("#txtTest").load("/libs/result.php");
+		}else{
+			$("#txtTest").load("Result");
+			
+		}
+	}, 3000);
+});
+</script>
 </body>
 </html>
