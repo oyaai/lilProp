@@ -57,8 +57,8 @@ if(isset($_POST)){
 
 
 		if($status){
-
-			header( "Location: ".url );
+			echo "<script type='text/javascript'>alert('Complete!');window.location.href='".uri."';</script>";
+			//header( "Location: ".url );
 		}else{
 			
 			header( "Location: ".uri );
