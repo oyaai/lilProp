@@ -31,23 +31,28 @@ if(isset($_POST)){
 		$vflag = 1; 
 		
 	}
-	if($_REQUEST['txtFile'] == ""){
+	if($_FILES["txtFile"]["name"] == ""){
 		$name .= " File ";
 		$vflag = 1; 
 		
 	}
 
-	echo $vflag;
+	//echo $vflag;
 	if($vflag == 1 ){
 		echo "<script type='text/javascript'>alert('Enter ".$name."');window.location.href='".uri."';</script>";
-		
 	}
 	
 
 	if($vflag == 0 || $vflag == -1 ){
-	$fileName = $_FILES["txtFile"]["name"];
-	$dir_upload = "/imgs/uploads/";
-	$upload = $dir_upload . basename($_FILES["txtFile"]);
+	if($_FILES["txtFile"]["name"]){
+		$fileName = mb_convert_encoding($_FILES["txtFile"]["name"], "UTF-8");
+		//$fileName = date("Ymd").".jpg";
+	}
+	$dir_upload = "../imgs/uploads/";
+	$upload = $dir_upload . $_FILES["txtFile"]["name"];
+
+	move_uploaded_file($_FILES["txtFile"]["tmp_name"],$upload);
+
 
 	$sql = "INSERT INTO egn_pacific VALUES('','".$_REQUEST['txtName']."','".$_REQUEST['txtPhone']."','".$_REQUEST['txtEmail']."','".$_REQUEST['txtCompany']."','".$fileName."');";	
 
@@ -57,7 +62,7 @@ if(isset($_POST)){
 
 
 		if($status){
-			echo "<script type='text/javascript'>alert('Complete!');window.location.href='".uri."';</script>";
+			echo "<script type='text/javascript'>alert('Complete!');window.location.href='".url."';</script>";
 			//header( "Location: ".url );
 		}else{
 			
